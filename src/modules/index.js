@@ -1,8 +1,10 @@
 import { createStore, combineReducers } from "redux";
-import Animation from "./Animation";
-import Renderer from "./Renderer";
+import Timer from "./Timer";
+import Game from "./Game";
+import Keyboard from "./Keyboard";
 
-export const modules = combineReducers({
-  Animation,
-  Renderer
+export default combineReducers({
+  Timer,
+  Game,
+  Keyboard
 });

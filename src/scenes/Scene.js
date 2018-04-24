@@ -1,11 +1,19 @@
 import { Container } from "pixi.js";
 
-class Scene {
-  start() {
-    throw Error("No implemented yet!");
+import { registerScene } from "../modules/Game/actions";
+
+class Scene extends Container {
+  constructor({ subscribe, assetsManager, store }) {
+    super();
+    this.store = store;
+    this.subscribe = subscribe;
+    this.assetsManager = assetsManager;
+  }
+  create() {
+    throw Error("Missing create implementation!");
   }
   destroy() {
-    throw Error("No implemented yet!");
+    throw Error("Missing destroy implementation!");
   }
 }
 

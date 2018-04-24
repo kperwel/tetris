@@ -1,0 +1,8 @@
+background,0,0,16,16
+block_blue,0,17,16,16
+block_cyan,17,0,16,16
+block_green,17,17,16,16
+block_orange,0,34,16,16
+block_purple,17,34,16,16
+block_red,34,0,16,16
+block_yellow,34,17,16,16

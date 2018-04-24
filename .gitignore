@@ -1,3 +1,6 @@
 node_modules
 .vscode
 .log
+build
+yarn-error.log
+.DS_Store

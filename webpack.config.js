@@ -1,5 +1,8 @@
-var path = require("path");
-var DEBUG = process.env.NODE_ENV !== "production";
+const path = require("path");
+const DEBUG = process.env.NODE_ENV !== "production";
+
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -9,9 +12,7 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   },
-  alias: {
-    "@assets": path.resolve(__dirname, "src/assets/")
-  },
+  plugins: [new BundleAnalyzerPlugin()],
   module: {
     rules: [
       {
@@ -24,7 +25,7 @@ module.exports = {
         }
       },
       {
-        test: /\.jpe?g$|\.svg$|\.png$/,
+        test: /\.jpe?g$|\.svg$|\.png$|\.txt$/,
         use: {
           loader: "file-loader"
         }
@@ -39,6 +40,5 @@ module.exports = {
     contentBase: path.join(__dirname, "build"),
     compress: true,
     port: 8080
-  },
-  devtool: DEBUG ? "cheap-module-source-map" : false
+  }
 };

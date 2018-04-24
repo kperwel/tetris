@@ -1,29 +1,6 @@
-export const SHAPE = {
-  L: `
-#
-#
-##`,
-  I: `
-#
-#
-#
-#`,
-  S: `
- ##
-##`,
-  T: `
- #
-###`,
-  O: `
-##
-##`,
-  Z: `
- #
-##
-#`
-};
-
-export const FILL_CHAR = "#";
-export const EMPTY_CHAR = " ";
-export const NEW_LINE_CHAR = `
-`;
+export const L = "L";
+export const I = "I";
+export const S = "S";
+export const T = "T";
+export const O = "O";
+export const Z = "Z";
