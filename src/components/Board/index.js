@@ -71,7 +71,7 @@ export default class Board {
   }
 
   removeRow(y) {
-    this.fields = [{}, ...this.fields.splice(y)];
+    // this.fields = [{}, ...this.fields.splice(y)];
   }
 
   isColliding({ shape, shapeX, shapeY, rotation }) {
