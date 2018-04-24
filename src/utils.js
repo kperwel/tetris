@@ -43,3 +43,9 @@ export const ShapeIterator = shape => {
 export const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
 
 export const lerp = (v0, v1, t) => v0 * (1 - t) + v1 * t;
+
+export const toObject = arr => {
+  let rv = {};
+  for (let i = 0; i < arr.length; ++i) rv[i] = arr[i];
+  return rv;
+};

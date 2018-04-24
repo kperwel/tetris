@@ -1,21 +1,24 @@
-import { ShapeIterator, transposeTimes } from "../../utils";
+import { ShapeIterator, transposeTimes, toObject } from "../../utils";
 import { SIZE_H, SIZE_V } from "../../config";
 
 import { YELLOW, GREY } from "../../constants/colors";
 import * as shapes from "../../constants/shapes";
 import SHAPE_COLORS_MAP from "../../constants/shapeColorsMap";
 
+const v_edge = toObject(Array(SIZE_H + 1).fill(YELLOW));
+const h_edge = {
+  [0]: YELLOW,
+  [SIZE_H + 1]: YELLOW
+};
+
 const getInitialBorders = () => {
   const borders = [];
 
   for (let y = 0; y <= SIZE_V + 1; y++) {
     if (y === SIZE_V + 1) {
-      borders[y] = Array(SIZE_H + 1).fill(YELLOW);
+      borders[y] = { ...v_edge };
     } else {
-      borders[y] = {
-        [0]: YELLOW,
-        [SIZE_H + 1]: YELLOW
-      };
+      borders[y] = { ...h_edge };
     }
   }
 
@@ -63,7 +66,7 @@ export default class Board {
   }
 
   checkFullRow(y) {
-    return this.fields[y] && Object.values(this.fields[y]).length >= SIZE_H;
+    return this.fields[y] && Object.values(this.fields[y]).length >= SIZE_H + 2;
   }
 
   rowHasAny(y) {
@@ -71,7 +74,9 @@ export default class Board {
   }
 
   removeRow(y) {
-    // this.fields = [{}, ...this.fields.splice(y)];
+    const fields = [...this.fields];
+    fields.splice(y, 1);
+    this.fields = [{ ...h_edge }, ...fields];
   }
 
   isColliding({ shape, shapeX, shapeY, rotation }) {
