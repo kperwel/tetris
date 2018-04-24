@@ -14,6 +14,7 @@ import { GREY, YELLOW } from "../../constants/colors";
 import { Z } from "../../constants/shapeTypes";
 
 const getShape = state => state.Game.shape;
+const getNextShape = state => state.Game.next;
 const getBoard = state => state.Game.board;
 const getShapeRotation = state => state.Game.shapeRotation;
 const getShapeX = state => state.Game.shapeX;
@@ -30,10 +31,17 @@ export default class Game extends Scene {
 
     this.addChild(background);
     this.addChild(this.shape);
+    this.addChild(this.preview);
     this.addChild(this.board);
 
     this.setShapeType(getShape(this.store.getState()));
     this.setBoard(getShape(this.store.getState()));
+
+    this.preview.position.x = 32;
+    this.preview.position.y = 32;
+    this.preview.alpha = 0.5;
+    this.preview.setType(getNextShape(this.store.getState()));
+
     this.moveShape({
       x: getShapeX(this.store.getState()),
       y: getShapeY(this.store.getState())
@@ -47,6 +55,9 @@ export default class Game extends Scene {
         this.moveShape({ y: getShapeY(state) })
       ),
       this.subscribe("Game.shape", state => this.setShapeType(getShape(state))),
+      this.subscribe("Game.next", state =>
+        this.setPreviewShapeType(getNextShape(state))
+      ),
       this.subscribe("Game.board", state => this.setBoard(getBoard(state))),
       this.subscribe("Game.shapeRotation", state =>
         this.setShapeType(getShape(state), getShapeRotation(state))
@@ -65,6 +76,10 @@ export default class Game extends Scene {
     this.shape.setType(shapeType, rotation);
   }
 
+  setPreviewShapeType(shapeType, rotation) {
+    this.preview.setType(shapeType, rotation);
+  }
+
   setBoard({ fields }) {
     this.board.setFields(fields);
   }
@@ -80,6 +95,7 @@ export default class Game extends Scene {
   constructor({ subscribe, assetsManager, ...args }) {
     super({ subscribe, assetsManager, ...args });
     this.shape = new Shape({ assetsManager });
+    this.preview = new Shape({ assetsManager });
     this.board = new Map({ assetsManager });
   }
 }

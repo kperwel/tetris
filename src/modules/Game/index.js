@@ -19,6 +19,7 @@ import Board from "../../components/Board";
 const defaultState = {
   activeScene: null,
   shape: getRandom(Object.values(shapeTypes)),
+  next: getRandom(Object.values(shapeTypes)),
   shapeRotation: 0,
   shapeX: CENTER,
   shapeY: 0,
@@ -55,7 +56,8 @@ export default (state = defaultState, { type, payload }) => {
     case REQUEST_NEW_SHAPE:
       return {
         ...state,
-        shape: getRandom(Object.values(shapeTypes)),
+        shape: state.next,
+        next: getRandom(Object.values(shapeTypes)),
         shapeRotation: 0,
         shapeX: CENTER,
         shapeY: -2

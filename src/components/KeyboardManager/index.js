@@ -21,7 +21,6 @@ export default class KeyboardManager {
   }
 
   onKeyDown(event) {
-    console.log(event.keyCode);
     this.store.dispatch(keyDown(KEY_ACTION_MAP[event.keyCode]));
   }
 
