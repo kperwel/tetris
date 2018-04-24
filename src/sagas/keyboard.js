@@ -1,15 +1,18 @@
-import { takeEvery, select, put } from "redux-saga/effects";
+import { takeEvery, select, put, all } from "redux-saga/effects";
 
 import { LOADING_FINISHED } from "../components/AssetsManager/actions";
-import { RESTART_REQUEST } from "../scenes/Game/actions";
 
-import { setShapeX, setShapeRotation } from "../modules/Game/actions";
+import {
+  setShapeX,
+  setShapeRotation,
+  requestRestart
+} from "../modules/Game/actions";
 import { KEY_DOWN } from "../modules/Keyboard/actions";
 
-import { LEFT, RIGHT, UP, DOWN } from "../constants/keys";
+import { LEFT, RIGHT, UP, DOWN, RESTART } from "../constants/keys";
 import { SIZE_H } from "../config";
 
-import { tetrisTick } from "../modules/Timer/actions";
+import { tetrisTick, startTetrisTicker, tick } from "../modules/Timer/actions";
 
 function* moveShape({ payload }) {
   const state = yield select();
@@ -51,6 +54,9 @@ function* moveShape({ payload }) {
       ) {
         yield put(setShapeRotation(state.Game.shapeRotation + 1 % 3));
       }
+      break;
+    case RESTART:
+      yield all([put(requestRestart()), put(startTetrisTicker()), put(tick())]);
       break;
     case DOWN:
       yield put(tetrisTick());

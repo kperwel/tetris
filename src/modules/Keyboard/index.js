@@ -7,6 +7,7 @@ const defaultState = {
 export default (state = defaultState, { type, payload } = {}) => {
   switch (type) {
     case KEY_DOWN:
+      console.log(payload);
       return {
         ...state,
         buttonPressed: payload.button

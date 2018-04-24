@@ -1,9 +1,13 @@
 import { takeEvery, put, all } from "redux-saga/effects";
 
 import { LOADING_FINISHED } from "../components/AssetsManager/actions";
-import { RESTART_REQUEST } from "../scenes/Game/actions";
 
-import { setScene, START_GAME, END_GAME } from "../modules/Game/actions";
+import {
+  setScene,
+  START_GAME,
+  RESTART_REQUEST,
+  END_GAME
+} from "../modules/Game/actions";
 import { stopTetrisTicker } from "../modules/Timer/actions";
 
 import { id as gameSceneId } from "../scenes/Game";

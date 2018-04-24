@@ -8,6 +8,11 @@ export const SET_SHAPE_ROTATION = "GAME/SET_SHAPE_ROTATION";
 export const SHAPE_FREEZE = "GAME/SHAPE_FREEZE";
 export const REQUEST_NEW_SHAPE = "GAME/REQUEST_NEW_SHAPE";
 export const REMOVE_ROW = "GAME/REMOVE_ROW";
+export const RESTART_REQUEST = "GAME/RESTART_REQUEST";
+
+export const requestRestart = () => ({
+  type: RESTART_REQUEST
+});
 
 export const end = () => ({
   type: END_GAME

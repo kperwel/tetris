@@ -28,7 +28,6 @@ export default class SceneManager {
       currentScene.destroy();
       this.stage.removeChildren();
     }
-    scene.set;
     scene.create();
     this.stage.addChild(scene);
   }

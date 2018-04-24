@@ -1,5 +1,6 @@
 import { CENTER } from "../../config";
 import { getRandom } from "../../utils";
+import { id as GAME_SCENE_ID } from "../../scenes/Game";
 import {
   SET_SCENE,
   SET_SHAPE,
@@ -8,7 +9,8 @@ import {
   SET_SHAPE_ROTATION,
   SHAPE_FREEZE,
   REQUEST_NEW_SHAPE,
-  REMOVE_ROW
+  REMOVE_ROW,
+  RESTART_REQUEST
 } from "./actions";
 import * as shapeTypes from "../../constants/shapeTypes";
 
@@ -64,6 +66,14 @@ export default (state = defaultState, { type, payload }) => {
       return {
         ...state,
         board
+      };
+    }
+    case RESTART_REQUEST: {
+      return {
+        ...defaultState,
+        board: new Board(),
+        shape: getRandom(Object.values(shapeTypes)),
+        activeScene: GAME_SCENE_ID
       };
     }
     case SHAPE_FREEZE:
