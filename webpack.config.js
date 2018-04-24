@@ -1,9 +1,6 @@
 const path = require("path");
 const DEBUG = process.env.NODE_ENV !== "production";
 
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
-
 module.exports = {
   entry: {
     index: ["./src/entry.js"]
@@ -12,7 +9,6 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "build")
   },
-  plugins: [new BundleAnalyzerPlugin()],
   module: {
     rules: [
       {
